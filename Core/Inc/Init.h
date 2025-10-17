@@ -1,6 +1,4 @@
-#include <Init.h>
 #include <stdint.h>
-#include <math.h>
 #define APB2ENR (0x18UL)
 #define RCC (0x40021000UL)
 #define GPIO_A (0x40010800UL)
@@ -14,3 +12,5 @@
 #define IN_DATA_REG_5 (0x20UL)
 #define IN_DATA_REG_7 (0x80UL)
 #define IN_DATA_REG_9 (0x200UL)
+
+void GPIO_init(void);
