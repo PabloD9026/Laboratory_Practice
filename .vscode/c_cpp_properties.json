@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "STM32 F1",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "STM32F103C8Tx"
+            ],
+            "windowsSdkVersion": "8.1",
+            "compilerPath": "D:/pablo/Masters/1_Semester/MP_MC/Labs/dependancies/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/arm-none-eabi-gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-arm",
+            "compilerArgs": [
+                "-mcpu=cortex-m4",
+                "-mthumb"
+            ]
+        }
+    ],
+    "version": 4
+}

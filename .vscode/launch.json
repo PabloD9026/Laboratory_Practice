@@ -1,0 +1,18 @@
+{
+    "configurations": [      
+        {
+            "cwd": "${workspaceFolder}",
+            "executable": "./build_F103C8Tx/STM32F103C8Tx.elf",
+            "name": "Debug with JLink",
+            "request": "launch",
+            "type": "cortex-debug",
+            "device": "STM32F103C8T6",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none",
+            "servertype": "openocd",
+            "configFiles": ["interface/stlink.cfg", "target/stm32f1x.cfg"],
+            "svdFile": "./STMDevices/STM32F103C8Tx/STM32F103.svd"
+        },
+    ],
+    "version": "2.0.0"
+}
