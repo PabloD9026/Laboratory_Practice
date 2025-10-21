@@ -1,0 +1,299 @@
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"it_handlers.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/it_handlers.c"
+  18              		.section	.text.SysTick_Handler,"ax",%progbits
+  19              		.align	1
+  20              		.global	SysTick_Handler
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	SysTick_Handler:
+  26              	.LFB65:
+   1:Core/Src/it_handlers.c **** #include <it_handlers.h>
+   2:Core/Src/it_handlers.c **** #include <variables.h>
+   3:Core/Src/it_handlers.c **** 
+   4:Core/Src/it_handlers.c **** void SysTick_Handler(void){
+  27              		.loc 1 4 27 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   5:Core/Src/it_handlers.c ****     millis++;
+  32              		.loc 1 5 5 view .LVU1
+  33              		.loc 1 5 11 is_stmt 0 view .LVU2
+  34 0000 024A     		ldr	r2, .L2
+  35 0002 1368     		ldr	r3, [r2]
+  36 0004 0133     		adds	r3, r3, #1
+  37 0006 1360     		str	r3, [r2]
+   6:Core/Src/it_handlers.c **** }
+  38              		.loc 1 6 1 view .LVU3
+  39 0008 7047     		bx	lr
+  40              	.L3:
+  41 000a 00BF     		.align	2
+  42              	.L2:
+  43 000c 00000000 		.word	millis
+  44              		.cfi_endproc
+  45              	.LFE65:
+  47              		.section	.text.EXTI9_5_IRQHandler,"ax",%progbits
+  48              		.align	1
+  49              		.global	EXTI9_5_IRQHandler
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  54              	EXTI9_5_IRQHandler:
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s 			page 2
+
+
+  55              	.LFB66:
+   7:Core/Src/it_handlers.c **** 
+   8:Core/Src/it_handlers.c **** void EXTI9_5_IRQHandler(void){
+  56              		.loc 1 8 30 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		@ link register save eliminated.
+   9:Core/Src/it_handlers.c ****     // Chek which one of the buttons was
+  10:Core/Src/it_handlers.c **** 
+  11:Core/Src/it_handlers.c ****     // B9 button
+  12:Core/Src/it_handlers.c ****     if(READ_BIT(EXTI->PR, EXTI_PR_PR9)){
+  61              		.loc 1 12 5 view .LVU5
+  62              		.loc 1 12 8 is_stmt 0 view .LVU6
+  63 0000 1F4B     		ldr	r3, .L8
+  64 0002 5B69     		ldr	r3, [r3, #20]
+  65              		.loc 1 12 7 view .LVU7
+  66 0004 13F4007F 		tst	r3, #512
+  67 0008 0FD0     		beq	.L5
+  13:Core/Src/it_handlers.c ****         countB9++;
+  68              		.loc 1 13 9 is_stmt 1 view .LVU8
+  69              		.loc 1 13 16 is_stmt 0 view .LVU9
+  70 000a 1E4A     		ldr	r2, .L8+4
+  71 000c 1388     		ldrh	r3, [r2]
+  72 000e 9BB2     		uxth	r3, r3
+  73 0010 0133     		adds	r3, r3, #1
+  74 0012 9BB2     		uxth	r3, r3
+  75 0014 1380     		strh	r3, [r2]	@ movhi
+  14:Core/Src/it_handlers.c ****         TSB9 = millis;
+  76              		.loc 1 14 9 is_stmt 1 view .LVU10
+  77              		.loc 1 14 14 is_stmt 0 view .LVU11
+  78 0016 1C4B     		ldr	r3, .L8+8
+  79 0018 1B68     		ldr	r3, [r3]
+  80 001a 9BB2     		uxth	r3, r3
+  81 001c 1B4A     		ldr	r2, .L8+12
+  82 001e 1380     		strh	r3, [r2]	@ movhi
+  15:Core/Src/it_handlers.c ****         // interrupt handled (basically finished)
+  16:Core/Src/it_handlers.c ****         SET_BIT(EXTI->PR, EXTI_PR_PR9);
+  83              		.loc 1 16 9 is_stmt 1 view .LVU12
+  84 0020 174A     		ldr	r2, .L8
+  85 0022 5369     		ldr	r3, [r2, #20]
+  86 0024 43F40073 		orr	r3, r3, #512
+  87 0028 5361     		str	r3, [r2, #20]
+  88              	.L5:
+  17:Core/Src/it_handlers.c ****     }
+  18:Core/Src/it_handlers.c **** 
+  19:Core/Src/it_handlers.c ****     // B7 button
+  20:Core/Src/it_handlers.c ****     if(READ_BIT(EXTI->PR, EXTI_PR_PR7)){
+  89              		.loc 1 20 5 view .LVU13
+  90              		.loc 1 20 8 is_stmt 0 view .LVU14
+  91 002a 154B     		ldr	r3, .L8
+  92 002c 5B69     		ldr	r3, [r3, #20]
+  93              		.loc 1 20 7 view .LVU15
+  94 002e 13F0800F 		tst	r3, #128
+  95 0032 0FD0     		beq	.L6
+  21:Core/Src/it_handlers.c ****         countB7++;
+  96              		.loc 1 21 9 is_stmt 1 view .LVU16
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s 			page 3
+
+
+  97              		.loc 1 21 16 is_stmt 0 view .LVU17
+  98 0034 164A     		ldr	r2, .L8+16
+  99 0036 1388     		ldrh	r3, [r2]
+ 100 0038 9BB2     		uxth	r3, r3
+ 101 003a 0133     		adds	r3, r3, #1
+ 102 003c 9BB2     		uxth	r3, r3
+ 103 003e 1380     		strh	r3, [r2]	@ movhi
+  22:Core/Src/it_handlers.c ****         TSB7 = millis;
+ 104              		.loc 1 22 9 is_stmt 1 view .LVU18
+ 105              		.loc 1 22 14 is_stmt 0 view .LVU19
+ 106 0040 114B     		ldr	r3, .L8+8
+ 107 0042 1B68     		ldr	r3, [r3]
+ 108 0044 9BB2     		uxth	r3, r3
+ 109 0046 134A     		ldr	r2, .L8+20
+ 110 0048 1380     		strh	r3, [r2]	@ movhi
+  23:Core/Src/it_handlers.c ****         // interrupt handled (basically finished)
+  24:Core/Src/it_handlers.c ****         SET_BIT(EXTI->PR, EXTI_PR_PR7);
+ 111              		.loc 1 24 9 is_stmt 1 view .LVU20
+ 112 004a 0D4A     		ldr	r2, .L8
+ 113 004c 5369     		ldr	r3, [r2, #20]
+ 114 004e 43F08003 		orr	r3, r3, #128
+ 115 0052 5361     		str	r3, [r2, #20]
+ 116              	.L6:
+  25:Core/Src/it_handlers.c ****     }
+  26:Core/Src/it_handlers.c **** 
+  27:Core/Src/it_handlers.c ****     // B5 button
+  28:Core/Src/it_handlers.c ****     if(READ_BIT(EXTI->PR, EXTI_PR_PR5)){
+ 117              		.loc 1 28 5 view .LVU21
+ 118              		.loc 1 28 8 is_stmt 0 view .LVU22
+ 119 0054 0A4B     		ldr	r3, .L8
+ 120 0056 5B69     		ldr	r3, [r3, #20]
+ 121              		.loc 1 28 7 view .LVU23
+ 122 0058 13F0200F 		tst	r3, #32
+ 123 005c 0FD0     		beq	.L4
+  29:Core/Src/it_handlers.c ****         countB5++;
+ 124              		.loc 1 29 9 is_stmt 1 view .LVU24
+ 125              		.loc 1 29 16 is_stmt 0 view .LVU25
+ 126 005e 0E4A     		ldr	r2, .L8+24
+ 127 0060 1388     		ldrh	r3, [r2]
+ 128 0062 9BB2     		uxth	r3, r3
+ 129 0064 0133     		adds	r3, r3, #1
+ 130 0066 9BB2     		uxth	r3, r3
+ 131 0068 1380     		strh	r3, [r2]	@ movhi
+  30:Core/Src/it_handlers.c ****         TSB5 = millis;
+ 132              		.loc 1 30 9 is_stmt 1 view .LVU26
+ 133              		.loc 1 30 14 is_stmt 0 view .LVU27
+ 134 006a 074B     		ldr	r3, .L8+8
+ 135 006c 1B68     		ldr	r3, [r3]
+ 136 006e 9BB2     		uxth	r3, r3
+ 137 0070 0A4A     		ldr	r2, .L8+28
+ 138 0072 1380     		strh	r3, [r2]	@ movhi
+  31:Core/Src/it_handlers.c ****         // interrupt handled (basically finished)
+  32:Core/Src/it_handlers.c ****         SET_BIT(EXTI->PR, EXTI_PR_PR5);
+ 139              		.loc 1 32 9 is_stmt 1 view .LVU28
+ 140 0074 024A     		ldr	r2, .L8
+ 141 0076 5369     		ldr	r3, [r2, #20]
+ 142 0078 43F02003 		orr	r3, r3, #32
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s 			page 4
+
+
+ 143 007c 5361     		str	r3, [r2, #20]
+ 144              	.L4:
+  33:Core/Src/it_handlers.c ****     }
+  34:Core/Src/it_handlers.c **** 
+  35:Core/Src/it_handlers.c **** }
+ 145              		.loc 1 35 1 is_stmt 0 view .LVU29
+ 146 007e 7047     		bx	lr
+ 147              	.L9:
+ 148              		.align	2
+ 149              	.L8:
+ 150 0080 00040140 		.word	1073808384
+ 151 0084 00000000 		.word	countB9
+ 152 0088 00000000 		.word	millis
+ 153 008c 00000000 		.word	TSB9
+ 154 0090 00000000 		.word	countB7
+ 155 0094 00000000 		.word	TSB7
+ 156 0098 00000000 		.word	countB5
+ 157 009c 00000000 		.word	TSB5
+ 158              		.cfi_endproc
+ 159              	.LFE66:
+ 161              		.section	.text.EXTI3_IRQHandler,"ax",%progbits
+ 162              		.align	1
+ 163              		.global	EXTI3_IRQHandler
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	EXTI3_IRQHandler:
+ 169              	.LFB67:
+  36:Core/Src/it_handlers.c **** 
+  37:Core/Src/it_handlers.c **** void EXTI3_IRQHandler(void){
+ 170              		.loc 1 37 28 is_stmt 1 view -0
+ 171              		.cfi_startproc
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+  38:Core/Src/it_handlers.c ****         // B3 button
+  39:Core/Src/it_handlers.c ****     if(READ_BIT(EXTI->PR, EXTI_PR_PR3)){
+ 175              		.loc 1 39 5 view .LVU31
+ 176              		.loc 1 39 8 is_stmt 0 view .LVU32
+ 177 0000 0A4B     		ldr	r3, .L12
+ 178 0002 5B69     		ldr	r3, [r3, #20]
+ 179              		.loc 1 39 7 view .LVU33
+ 180 0004 13F0080F 		tst	r3, #8
+ 181 0008 0FD0     		beq	.L10
+  40:Core/Src/it_handlers.c ****         countB3++;
+ 182              		.loc 1 40 9 is_stmt 1 view .LVU34
+ 183              		.loc 1 40 16 is_stmt 0 view .LVU35
+ 184 000a 094A     		ldr	r2, .L12+4
+ 185 000c 1388     		ldrh	r3, [r2]
+ 186 000e 9BB2     		uxth	r3, r3
+ 187 0010 0133     		adds	r3, r3, #1
+ 188 0012 9BB2     		uxth	r3, r3
+ 189 0014 1380     		strh	r3, [r2]	@ movhi
+  41:Core/Src/it_handlers.c ****         TSB3 = millis;
+ 190              		.loc 1 41 9 is_stmt 1 view .LVU36
+ 191              		.loc 1 41 14 is_stmt 0 view .LVU37
+ 192 0016 074B     		ldr	r3, .L12+8
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s 			page 5
+
+
+ 193 0018 1B68     		ldr	r3, [r3]
+ 194 001a 9BB2     		uxth	r3, r3
+ 195 001c 064A     		ldr	r2, .L12+12
+ 196 001e 1380     		strh	r3, [r2]	@ movhi
+  42:Core/Src/it_handlers.c ****         // interrupt handled (basically finished)
+  43:Core/Src/it_handlers.c ****         SET_BIT(EXTI->PR, EXTI_PR_PR3);
+ 197              		.loc 1 43 9 is_stmt 1 view .LVU38
+ 198 0020 024A     		ldr	r2, .L12
+ 199 0022 5369     		ldr	r3, [r2, #20]
+ 200 0024 43F00803 		orr	r3, r3, #8
+ 201 0028 5361     		str	r3, [r2, #20]
+ 202              	.L10:
+  44:Core/Src/it_handlers.c ****     }
+  45:Core/Src/it_handlers.c **** }...
+ 203              		.loc 1 45 1 is_stmt 0 view .LVU39
+ 204 002a 7047     		bx	lr
+ 205              	.L13:
+ 206              		.align	2
+ 207              	.L12:
+ 208 002c 00040140 		.word	1073808384
+ 209 0030 00000000 		.word	countB3
+ 210 0034 00000000 		.word	millis
+ 211 0038 00000000 		.word	TSB3
+ 212              		.cfi_endproc
+ 213              	.LFE67:
+ 215              		.text
+ 216              	.Letext0:
+ 217              		.file 2 "C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h"
+ 218              		.file 3 "C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h"
+ 219              		.file 4 "CMSIS/Devices/STM32F1xx/Inc/STM32f103xB/stm32f103xb.h"
+ 220              		.file 5 "Core/Inc/variables.h"
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 it_handlers.c
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:19     .text.SysTick_Handler:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:25     .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:43     .text.SysTick_Handler:0000000c $d
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:48     .text.EXTI9_5_IRQHandler:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:54     .text.EXTI9_5_IRQHandler:00000000 EXTI9_5_IRQHandler
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:150    .text.EXTI9_5_IRQHandler:00000080 $d
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:162    .text.EXTI3_IRQHandler:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:168    .text.EXTI3_IRQHandler:00000000 EXTI3_IRQHandler
+C:\Users\pablo\AppData\Local\Temp\ccSoCW6I.s:208    .text.EXTI3_IRQHandler:0000002c $d
+
+UNDEFINED SYMBOLS
+millis
+countB9
+TSB9
+countB7
+TSB7
+countB5
+TSB5
+countB3
+TSB3

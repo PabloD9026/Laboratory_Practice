@@ -1,0 +1,247 @@
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"variables.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/variables.c"
+  18              		.global	selLED
+  19              		.section	.bss.selLED,"aw",%nobits
+  22              	selLED:
+  23 0000 00       		.space	1
+  24              		.global	currentFreqsMode2
+  25              		.section	.bss.currentFreqsMode2,"aw",%nobits
+  26              		.align	2
+  29              	currentFreqsMode2:
+  30 0000 00000000 		.space	6
+  30      0000
+  31              		.global	Mode2Freqs
+  32              		.section	.data.Mode2Freqs,"aw"
+  33              		.align	2
+  36              	Mode2Freqs:
+  37 0000 9A99993E 		.word	1050253722
+  38 0004 CDCC4C3F 		.word	1061997773
+  39 0008 3333B33F 		.word	1068708659
+  40              		.global	currentFreqMode1
+  41              		.section	.bss.currentFreqMode1,"aw",%nobits
+  44              	currentFreqMode1:
+  45 0000 00       		.space	1
+  46              		.global	Mode1Freqs
+  47              		.section	.data.Mode1Freqs,"aw"
+  48              		.align	2
+  51              	Mode1Freqs:
+  52 0000 0000003F 		.word	1056964608
+  53 0004 9A99D93F 		.word	1071225242
+  54 0008 CDCC0C40 		.word	1074580685
+  55              		.global	mode
+  56              		.section	.bss.mode,"aw",%nobits
+  59              	mode:
+  60 0000 00       		.space	1
+  61              		.global	G7
+  62              		.section	.bss.G7,"aw",%nobits
+  65              	G7:
+  66 0000 00       		.space	1
+  67              		.global	R6
+  68              		.section	.bss.R6,"aw",%nobits
+  71              	R6:
+  72 0000 00       		.space	1
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s 			page 2
+
+
+  73              		.global	B5
+  74              		.section	.bss.B5,"aw",%nobits
+  77              	B5:
+  78 0000 00       		.space	1
+  79              		.global	B2
+  80              		.section	.bss.B2,"aw",%nobits
+  83              	B2:
+  84 0000 00       		.space	1
+  85              		.global	R1
+  86              		.section	.bss.R1,"aw",%nobits
+  89              	R1:
+  90 0000 00       		.space	1
+  91              		.global	G0
+  92              		.section	.bss.G0,"aw",%nobits
+  95              	G0:
+  96 0000 00       		.space	1
+  97              		.global	TSB3
+  98              		.section	.bss.TSB3,"aw",%nobits
+  99              		.align	1
+ 102              	TSB3:
+ 103 0000 0000     		.space	2
+ 104              		.global	TSB5
+ 105              		.section	.bss.TSB5,"aw",%nobits
+ 106              		.align	1
+ 109              	TSB5:
+ 110 0000 0000     		.space	2
+ 111              		.global	TSB7
+ 112              		.section	.bss.TSB7,"aw",%nobits
+ 113              		.align	1
+ 116              	TSB7:
+ 117 0000 0000     		.space	2
+ 118              		.global	TSB9
+ 119              		.section	.bss.TSB9,"aw",%nobits
+ 120              		.align	1
+ 123              	TSB9:
+ 124 0000 0000     		.space	2
+ 125              		.global	counterB3
+ 126              		.section	.bss.counterB3,"aw",%nobits
+ 127              		.align	1
+ 130              	counterB3:
+ 131 0000 0000     		.space	2
+ 132              		.global	counterB5
+ 133              		.section	.bss.counterB5,"aw",%nobits
+ 134              		.align	1
+ 137              	counterB5:
+ 138 0000 0000     		.space	2
+ 139              		.global	counterB7
+ 140              		.section	.bss.counterB7,"aw",%nobits
+ 141              		.align	1
+ 144              	counterB7:
+ 145 0000 0000     		.space	2
+ 146              		.global	counterB9
+ 147              		.section	.bss.counterB9,"aw",%nobits
+ 148              		.align	1
+ 151              	counterB9:
+ 152 0000 0000     		.space	2
+ 153              		.global	p_countB3
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s 			page 3
+
+
+ 154              		.section	.bss.p_countB3,"aw",%nobits
+ 155              		.align	1
+ 158              	p_countB3:
+ 159 0000 0000     		.space	2
+ 160              		.global	p_countB5
+ 161              		.section	.bss.p_countB5,"aw",%nobits
+ 162              		.align	1
+ 165              	p_countB5:
+ 166 0000 0000     		.space	2
+ 167              		.global	p_countB7
+ 168              		.section	.bss.p_countB7,"aw",%nobits
+ 169              		.align	1
+ 172              	p_countB7:
+ 173 0000 0000     		.space	2
+ 174              		.global	p_countB9
+ 175              		.section	.bss.p_countB9,"aw",%nobits
+ 176              		.align	1
+ 179              	p_countB9:
+ 180 0000 0000     		.space	2
+ 181              		.global	countB3
+ 182              		.section	.bss.countB3,"aw",%nobits
+ 183              		.align	1
+ 186              	countB3:
+ 187 0000 0000     		.space	2
+ 188              		.global	countB5
+ 189              		.section	.bss.countB5,"aw",%nobits
+ 190              		.align	1
+ 193              	countB5:
+ 194 0000 0000     		.space	2
+ 195              		.global	countB7
+ 196              		.section	.bss.countB7,"aw",%nobits
+ 197              		.align	1
+ 200              	countB7:
+ 201 0000 0000     		.space	2
+ 202              		.global	countB9
+ 203              		.section	.bss.countB9,"aw",%nobits
+ 204              		.align	1
+ 207              	countB9:
+ 208 0000 0000     		.space	2
+ 209              		.global	debounce_thresh
+ 210              		.section	.data.debounce_thresh,"aw"
+ 211              		.align	1
+ 214              	debounce_thresh:
+ 215 0000 5000     		.short	80
+ 216              		.global	millis
+ 217              		.section	.bss.millis,"aw",%nobits
+ 218              		.align	2
+ 221              	millis:
+ 222 0000 00000000 		.space	4
+ 223              		.text
+ 224              	.Letext0:
+ 225              		.file 2 "C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h"
+ 226              		.file 3 "C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h"
+ 227              		.file 4 "Core/Inc/variables.h"
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 variables.c
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:22     .bss.selLED:00000000 selLED
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:23     .bss.selLED:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:29     .bss.currentFreqsMode2:00000000 currentFreqsMode2
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:26     .bss.currentFreqsMode2:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:36     .data.Mode2Freqs:00000000 Mode2Freqs
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:33     .data.Mode2Freqs:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:44     .bss.currentFreqMode1:00000000 currentFreqMode1
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:45     .bss.currentFreqMode1:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:51     .data.Mode1Freqs:00000000 Mode1Freqs
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:48     .data.Mode1Freqs:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:59     .bss.mode:00000000 mode
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:60     .bss.mode:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:65     .bss.G7:00000000 G7
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:66     .bss.G7:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:71     .bss.R6:00000000 R6
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:72     .bss.R6:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:77     .bss.B5:00000000 B5
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:78     .bss.B5:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:83     .bss.B2:00000000 B2
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:84     .bss.B2:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:89     .bss.R1:00000000 R1
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:90     .bss.R1:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:95     .bss.G0:00000000 G0
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:96     .bss.G0:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:102    .bss.TSB3:00000000 TSB3
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:99     .bss.TSB3:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:109    .bss.TSB5:00000000 TSB5
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:106    .bss.TSB5:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:116    .bss.TSB7:00000000 TSB7
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:113    .bss.TSB7:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:123    .bss.TSB9:00000000 TSB9
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:120    .bss.TSB9:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:130    .bss.counterB3:00000000 counterB3
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:127    .bss.counterB3:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:137    .bss.counterB5:00000000 counterB5
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:134    .bss.counterB5:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:144    .bss.counterB7:00000000 counterB7
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:141    .bss.counterB7:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:151    .bss.counterB9:00000000 counterB9
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:148    .bss.counterB9:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:158    .bss.p_countB3:00000000 p_countB3
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:155    .bss.p_countB3:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:165    .bss.p_countB5:00000000 p_countB5
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:162    .bss.p_countB5:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:172    .bss.p_countB7:00000000 p_countB7
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:169    .bss.p_countB7:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:179    .bss.p_countB9:00000000 p_countB9
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:176    .bss.p_countB9:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:186    .bss.countB3:00000000 countB3
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:183    .bss.countB3:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:193    .bss.countB5:00000000 countB5
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:190    .bss.countB5:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:200    .bss.countB7:00000000 countB7
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:197    .bss.countB7:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:207    .bss.countB9:00000000 countB9
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s 			page 5
+
+
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:204    .bss.countB9:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:214    .data.debounce_thresh:00000000 debounce_thresh
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:211    .data.debounce_thresh:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:221    .bss.millis:00000000 millis
+C:\Users\pablo\AppData\Local\Temp\ccMFSwwQ.s:218    .bss.millis:00000000 $d
+
+NO UNDEFINED SYMBOLS

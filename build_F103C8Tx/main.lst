@@ -1,0 +1,1453 @@
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/main.c"
+  18              		.section	.text.checkButtons,"ax",%progbits
+  19              		.align	1
+  20              		.global	checkButtons
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	checkButtons:
+  26              	.LFB65:
+   1:Core/Src/main.c **** #include <main.h>
+   2:Core/Src/main.c **** #include <variables.h>
+   3:Core/Src/main.c **** 
+   4:Core/Src/main.c **** void checkButtons(){
+  27              		.loc 1 4 20 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   5:Core/Src/main.c ****     // checking button B3
+   6:Core/Src/main.c ****     if (p_countB3 != countB3){
+  32              		.loc 1 6 5 view .LVU1
+  33              		.loc 1 6 19 is_stmt 0 view .LVU2
+  34 0000 674B     		ldr	r3, .L8
+  35 0002 1A88     		ldrh	r2, [r3]
+  36 0004 92B2     		uxth	r2, r2
+  37 0006 674B     		ldr	r3, .L8+4
+  38 0008 1B88     		ldrh	r3, [r3]
+  39 000a 9BB2     		uxth	r3, r3
+  40              		.loc 1 6 8 view .LVU3
+  41 000c 9A42     		cmp	r2, r3
+  42 000e 20D0     		beq	.L2
+   7:Core/Src/main.c ****         if((-TSB3 + millis) >= debounce_thresh){
+  43              		.loc 1 7 9 is_stmt 1 view .LVU4
+  44              		.loc 1 7 19 is_stmt 0 view .LVU5
+  45 0010 654B     		ldr	r3, .L8+8
+  46 0012 1A68     		ldr	r2, [r3]
+  47              		.loc 1 7 13 view .LVU6
+  48 0014 654B     		ldr	r3, .L8+12
+  49 0016 1B88     		ldrh	r3, [r3]
+  50 0018 9BB2     		uxth	r3, r3
+  51              		.loc 1 7 19 view .LVU7
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 2
+
+
+  52 001a D21A     		subs	r2, r2, r3
+  53              		.loc 1 7 29 view .LVU8
+  54 001c 644B     		ldr	r3, .L8+16
+  55 001e 1B88     		ldrh	r3, [r3]
+  56 0020 9BB2     		uxth	r3, r3
+  57              		.loc 1 7 11 view .LVU9
+  58 0022 9A42     		cmp	r2, r3
+  59 0024 15D3     		bcc	.L2
+   8:Core/Src/main.c ****             counterB3++;
+  60              		.loc 1 8 13 is_stmt 1 view .LVU10
+  61              		.loc 1 8 22 is_stmt 0 view .LVU11
+  62 0026 634A     		ldr	r2, .L8+20
+  63 0028 1388     		ldrh	r3, [r2]
+  64 002a 9BB2     		uxth	r3, r3
+  65 002c 0133     		adds	r3, r3, #1
+  66 002e 9BB2     		uxth	r3, r3
+  67 0030 1380     		strh	r3, [r2]	@ movhi
+   9:Core/Src/main.c ****             p_countB3 = countB3;
+  68              		.loc 1 9 13 is_stmt 1 view .LVU12
+  69              		.loc 1 9 23 is_stmt 0 view .LVU13
+  70 0032 5C4B     		ldr	r3, .L8+4
+  71 0034 1B88     		ldrh	r3, [r3]
+  72 0036 9BB2     		uxth	r3, r3
+  73 0038 5949     		ldr	r1, .L8
+  74 003a 0B80     		strh	r3, [r1]	@ movhi
+  10:Core/Src/main.c ****             if (counterB3 % 2){
+  75              		.loc 1 10 13 is_stmt 1 view .LVU14
+  76              		.loc 1 10 17 is_stmt 0 view .LVU15
+  77 003c 1388     		ldrh	r3, [r2]
+  78              		.loc 1 10 16 view .LVU16
+  79 003e 13F0010F 		tst	r3, #1
+  80 0042 06D0     		beq	.L2
+  11:Core/Src/main.c ****                 mode = !mode;
+  81              		.loc 1 11 17 is_stmt 1 view .LVU17
+  82              		.loc 1 11 24 is_stmt 0 view .LVU18
+  83 0044 5C4A     		ldr	r2, .L8+24
+  84 0046 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  85 0048 DBB2     		uxtb	r3, r3
+  86 004a B3FA83F3 		clz	r3, r3
+  87 004e 5B09     		lsrs	r3, r3, #5
+  88              		.loc 1 11 22 view .LVU19
+  89 0050 1370     		strb	r3, [r2]
+  90              	.L2:
+  12:Core/Src/main.c ****             }
+  13:Core/Src/main.c ****         }
+  14:Core/Src/main.c ****     }
+  15:Core/Src/main.c **** 
+  16:Core/Src/main.c ****     // checking button B5
+  17:Core/Src/main.c ****     if (p_countB5 != countB5){
+  91              		.loc 1 17 5 is_stmt 1 view .LVU20
+  92              		.loc 1 17 19 is_stmt 0 view .LVU21
+  93 0052 5A4B     		ldr	r3, .L8+28
+  94 0054 1A88     		ldrh	r2, [r3]
+  95 0056 92B2     		uxth	r2, r2
+  96 0058 594B     		ldr	r3, .L8+32
+  97 005a 1B88     		ldrh	r3, [r3]
+  98 005c 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 3
+
+
+  99              		.loc 1 17 8 view .LVU22
+ 100 005e 9A42     		cmp	r2, r3
+ 101 0060 31D0     		beq	.L3
+  18:Core/Src/main.c ****         if((-TSB5 + millis) >= debounce_thresh){
+ 102              		.loc 1 18 9 is_stmt 1 view .LVU23
+ 103              		.loc 1 18 19 is_stmt 0 view .LVU24
+ 104 0062 514B     		ldr	r3, .L8+8
+ 105 0064 1A68     		ldr	r2, [r3]
+ 106              		.loc 1 18 13 view .LVU25
+ 107 0066 574B     		ldr	r3, .L8+36
+ 108 0068 1B88     		ldrh	r3, [r3]
+ 109 006a 9BB2     		uxth	r3, r3
+ 110              		.loc 1 18 19 view .LVU26
+ 111 006c D21A     		subs	r2, r2, r3
+ 112              		.loc 1 18 29 view .LVU27
+ 113 006e 504B     		ldr	r3, .L8+16
+ 114 0070 1B88     		ldrh	r3, [r3]
+ 115 0072 9BB2     		uxth	r3, r3
+ 116              		.loc 1 18 11 view .LVU28
+ 117 0074 9A42     		cmp	r2, r3
+ 118 0076 26D3     		bcc	.L3
+  19:Core/Src/main.c ****             counterB5++;
+ 119              		.loc 1 19 13 is_stmt 1 view .LVU29
+ 120              		.loc 1 19 22 is_stmt 0 view .LVU30
+ 121 0078 534A     		ldr	r2, .L8+40
+ 122 007a 1388     		ldrh	r3, [r2]
+ 123 007c 9BB2     		uxth	r3, r3
+ 124 007e 0133     		adds	r3, r3, #1
+ 125 0080 9BB2     		uxth	r3, r3
+ 126 0082 1380     		strh	r3, [r2]	@ movhi
+  20:Core/Src/main.c ****             p_countB5 = countB5;
+ 127              		.loc 1 20 13 is_stmt 1 view .LVU31
+ 128              		.loc 1 20 23 is_stmt 0 view .LVU32
+ 129 0084 4E4B     		ldr	r3, .L8+32
+ 130 0086 1B88     		ldrh	r3, [r3]
+ 131 0088 9BB2     		uxth	r3, r3
+ 132 008a 4C49     		ldr	r1, .L8+28
+ 133 008c 0B80     		strh	r3, [r1]	@ movhi
+  21:Core/Src/main.c ****             TSB5 = millis;
+ 134              		.loc 1 21 13 is_stmt 1 view .LVU33
+ 135              		.loc 1 21 18 is_stmt 0 view .LVU34
+ 136 008e 464B     		ldr	r3, .L8+8
+ 137 0090 1B68     		ldr	r3, [r3]
+ 138 0092 9BB2     		uxth	r3, r3
+ 139 0094 4B49     		ldr	r1, .L8+36
+ 140 0096 0B80     		strh	r3, [r1]	@ movhi
+  22:Core/Src/main.c ****             if(counterB5 % 2){
+ 141              		.loc 1 22 13 is_stmt 1 view .LVU35
+ 142              		.loc 1 22 16 is_stmt 0 view .LVU36
+ 143 0098 1388     		ldrh	r3, [r2]
+ 144              		.loc 1 22 15 view .LVU37
+ 145 009a 13F0010F 		tst	r3, #1
+ 146 009e 12D0     		beq	.L3
+  23:Core/Src/main.c ****                 if (mode == 0){
+ 147              		.loc 1 23 17 is_stmt 1 view .LVU38
+ 148              		.loc 1 23 26 is_stmt 0 view .LVU39
+ 149 00a0 454B     		ldr	r3, .L8+24
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 4
+
+
+ 150 00a2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 151              		.loc 1 23 20 view .LVU40
+ 152 00a4 5BB9     		cbnz	r3, .L4
+  24:Core/Src/main.c ****                     currentFreqMode1++;
+ 153              		.loc 1 24 21 is_stmt 1 view .LVU41
+ 154              		.loc 1 24 37 is_stmt 0 view .LVU42
+ 155 00a6 494A     		ldr	r2, .L8+44
+ 156 00a8 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 157 00aa 0133     		adds	r3, r3, #1
+ 158 00ac DBB2     		uxtb	r3, r3
+ 159 00ae 1370     		strb	r3, [r2]
+  25:Core/Src/main.c ****                     if (currentFreqMode1 > 2){
+ 160              		.loc 1 25 21 is_stmt 1 view .LVU43
+ 161              		.loc 1 25 42 is_stmt 0 view .LVU44
+ 162 00b0 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 163              		.loc 1 25 24 view .LVU45
+ 164 00b2 022B     		cmp	r3, #2
+ 165 00b4 07D9     		bls	.L3
+  26:Core/Src/main.c ****                         currentFreqMode1 = 0;
+ 166              		.loc 1 26 25 is_stmt 1 view .LVU46
+ 167              		.loc 1 26 42 is_stmt 0 view .LVU47
+ 168 00b6 1346     		mov	r3, r2
+ 169 00b8 0022     		movs	r2, #0
+ 170 00ba 1A70     		strb	r2, [r3]
+ 171 00bc 03E0     		b	.L3
+ 172              	.L4:
+  27:Core/Src/main.c ****                     }
+  28:Core/Src/main.c ****                 }else if(mode == 1){
+ 173              		.loc 1 28 23 is_stmt 1 view .LVU48
+ 174              		.loc 1 28 31 is_stmt 0 view .LVU49
+ 175 00be 3E4B     		ldr	r3, .L8+24
+ 176 00c0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 177              		.loc 1 28 25 view .LVU50
+ 178 00c2 012B     		cmp	r3, #1
+ 179 00c4 58D0     		beq	.L7
+ 180              	.L3:
+  29:Core/Src/main.c ****                     currentFreqsMode2[selLED]++;
+  30:Core/Src/main.c ****                     if (currentFreqsMode2[selLED] > 2){
+  31:Core/Src/main.c ****                         currentFreqsMode2[selLED] = 0;
+  32:Core/Src/main.c ****                     }
+  33:Core/Src/main.c ****                 }
+  34:Core/Src/main.c ****                 
+  35:Core/Src/main.c ****                 
+  36:Core/Src/main.c ****             }
+  37:Core/Src/main.c ****         }
+  38:Core/Src/main.c ****     }
+  39:Core/Src/main.c **** 
+  40:Core/Src/main.c ****     // checking button B7
+  41:Core/Src/main.c ****     if (p_countB7 != countB7){
+ 181              		.loc 1 41 5 is_stmt 1 view .LVU51
+ 182              		.loc 1 41 19 is_stmt 0 view .LVU52
+ 183 00c6 424B     		ldr	r3, .L8+48
+ 184 00c8 1A88     		ldrh	r2, [r3]
+ 185 00ca 92B2     		uxth	r2, r2
+ 186 00cc 414B     		ldr	r3, .L8+52
+ 187 00ce 1B88     		ldrh	r3, [r3]
+ 188 00d0 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 5
+
+
+ 189              		.loc 1 41 8 view .LVU53
+ 190 00d2 9A42     		cmp	r2, r3
+ 191 00d4 2CD0     		beq	.L5
+  42:Core/Src/main.c ****         if((-TSB7 + millis) >= debounce_thresh){
+ 192              		.loc 1 42 9 is_stmt 1 view .LVU54
+ 193              		.loc 1 42 19 is_stmt 0 view .LVU55
+ 194 00d6 344B     		ldr	r3, .L8+8
+ 195 00d8 1A68     		ldr	r2, [r3]
+ 196              		.loc 1 42 13 view .LVU56
+ 197 00da 3F4B     		ldr	r3, .L8+56
+ 198 00dc 1B88     		ldrh	r3, [r3]
+ 199 00de 9BB2     		uxth	r3, r3
+ 200              		.loc 1 42 19 view .LVU57
+ 201 00e0 D21A     		subs	r2, r2, r3
+ 202              		.loc 1 42 29 view .LVU58
+ 203 00e2 334B     		ldr	r3, .L8+16
+ 204 00e4 1B88     		ldrh	r3, [r3]
+ 205 00e6 9BB2     		uxth	r3, r3
+ 206              		.loc 1 42 11 view .LVU59
+ 207 00e8 9A42     		cmp	r2, r3
+ 208 00ea 21D3     		bcc	.L5
+  43:Core/Src/main.c ****             counterB7++;
+ 209              		.loc 1 43 13 is_stmt 1 view .LVU60
+ 210              		.loc 1 43 22 is_stmt 0 view .LVU61
+ 211 00ec 3B4A     		ldr	r2, .L8+60
+ 212 00ee 1388     		ldrh	r3, [r2]
+ 213 00f0 9BB2     		uxth	r3, r3
+ 214 00f2 0133     		adds	r3, r3, #1
+ 215 00f4 9BB2     		uxth	r3, r3
+ 216 00f6 1380     		strh	r3, [r2]	@ movhi
+  44:Core/Src/main.c ****             p_countB7 = countB7;
+ 217              		.loc 1 44 13 is_stmt 1 view .LVU62
+ 218              		.loc 1 44 23 is_stmt 0 view .LVU63
+ 219 00f8 364B     		ldr	r3, .L8+52
+ 220 00fa 1B88     		ldrh	r3, [r3]
+ 221 00fc 9BB2     		uxth	r3, r3
+ 222 00fe 3449     		ldr	r1, .L8+48
+ 223 0100 0B80     		strh	r3, [r1]	@ movhi
+  45:Core/Src/main.c ****             TSB7 = millis;
+ 224              		.loc 1 45 13 is_stmt 1 view .LVU64
+ 225              		.loc 1 45 18 is_stmt 0 view .LVU65
+ 226 0102 294B     		ldr	r3, .L8+8
+ 227 0104 1B68     		ldr	r3, [r3]
+ 228 0106 9BB2     		uxth	r3, r3
+ 229 0108 3349     		ldr	r1, .L8+56
+ 230 010a 0B80     		strh	r3, [r1]	@ movhi
+  46:Core/Src/main.c ****             if (counterB7 % 2){
+ 231              		.loc 1 46 13 is_stmt 1 view .LVU66
+ 232              		.loc 1 46 17 is_stmt 0 view .LVU67
+ 233 010c 1388     		ldrh	r3, [r2]
+ 234              		.loc 1 46 16 view .LVU68
+ 235 010e 13F0010F 		tst	r3, #1
+ 236 0112 0DD0     		beq	.L5
+  47:Core/Src/main.c ****                 if (mode){
+ 237              		.loc 1 47 17 is_stmt 1 view .LVU69
+ 238              		.loc 1 47 21 is_stmt 0 view .LVU70
+ 239 0114 284B     		ldr	r3, .L8+24
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 6
+
+
+ 240 0116 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 241              		.loc 1 47 20 view .LVU71
+ 242 0118 53B1     		cbz	r3, .L5
+  48:Core/Src/main.c ****                 selLED++;
+ 243              		.loc 1 48 17 is_stmt 1 view .LVU72
+ 244              		.loc 1 48 23 is_stmt 0 view .LVU73
+ 245 011a 314A     		ldr	r2, .L8+64
+ 246 011c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 247 011e 0133     		adds	r3, r3, #1
+ 248 0120 DBB2     		uxtb	r3, r3
+ 249 0122 1370     		strb	r3, [r2]
+  49:Core/Src/main.c ****                 if (selLED > 5){selLED = 0;}
+ 250              		.loc 1 49 17 is_stmt 1 view .LVU74
+ 251              		.loc 1 49 28 is_stmt 0 view .LVU75
+ 252 0124 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 253              		.loc 1 49 20 view .LVU76
+ 254 0126 052B     		cmp	r3, #5
+ 255 0128 02D9     		bls	.L5
+ 256              		.loc 1 49 33 is_stmt 1 discriminator 1 view .LVU77
+ 257              		.loc 1 49 40 is_stmt 0 discriminator 1 view .LVU78
+ 258 012a 1346     		mov	r3, r2
+ 259 012c 0022     		movs	r2, #0
+ 260 012e 1A70     		strb	r2, [r3]
+ 261              	.L5:
+  50:Core/Src/main.c ****                 }
+  51:Core/Src/main.c ****             }
+  52:Core/Src/main.c ****             
+  53:Core/Src/main.c ****         }
+  54:Core/Src/main.c ****     }
+  55:Core/Src/main.c **** 
+  56:Core/Src/main.c ****     // checking button B9
+  57:Core/Src/main.c ****     if (p_countB9 != countB9){
+ 262              		.loc 1 57 5 is_stmt 1 view .LVU79
+ 263              		.loc 1 57 19 is_stmt 0 view .LVU80
+ 264 0130 2C4B     		ldr	r3, .L8+68
+ 265 0132 1A88     		ldrh	r2, [r3]
+ 266 0134 92B2     		uxth	r2, r2
+ 267 0136 2C4B     		ldr	r3, .L8+72
+ 268 0138 1B88     		ldrh	r3, [r3]
+ 269 013a 9BB2     		uxth	r3, r3
+ 270              		.loc 1 57 8 view .LVU81
+ 271 013c 9A42     		cmp	r2, r3
+ 272 013e 1AD0     		beq	.L1
+  58:Core/Src/main.c ****         if((-TSB9 + millis) >= debounce_thresh){
+ 273              		.loc 1 58 9 is_stmt 1 view .LVU82
+ 274              		.loc 1 58 19 is_stmt 0 view .LVU83
+ 275 0140 194B     		ldr	r3, .L8+8
+ 276 0142 1A68     		ldr	r2, [r3]
+ 277              		.loc 1 58 13 view .LVU84
+ 278 0144 294B     		ldr	r3, .L8+76
+ 279 0146 1B88     		ldrh	r3, [r3]
+ 280 0148 9BB2     		uxth	r3, r3
+ 281              		.loc 1 58 19 view .LVU85
+ 282 014a D21A     		subs	r2, r2, r3
+ 283              		.loc 1 58 29 view .LVU86
+ 284 014c 184B     		ldr	r3, .L8+16
+ 285 014e 1B88     		ldrh	r3, [r3]
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 7
+
+
+ 286 0150 9BB2     		uxth	r3, r3
+ 287              		.loc 1 58 11 view .LVU87
+ 288 0152 9A42     		cmp	r2, r3
+ 289 0154 0FD3     		bcc	.L1
+  59:Core/Src/main.c ****             counterB9++;
+ 290              		.loc 1 59 13 is_stmt 1 view .LVU88
+ 291              		.loc 1 59 22 is_stmt 0 view .LVU89
+ 292 0156 264A     		ldr	r2, .L8+80
+ 293 0158 1388     		ldrh	r3, [r2]
+ 294 015a 9BB2     		uxth	r3, r3
+ 295 015c 0133     		adds	r3, r3, #1
+ 296 015e 9BB2     		uxth	r3, r3
+ 297 0160 1380     		strh	r3, [r2]	@ movhi
+  60:Core/Src/main.c ****             p_countB9 = countB9;
+ 298              		.loc 1 60 13 is_stmt 1 view .LVU90
+ 299              		.loc 1 60 23 is_stmt 0 view .LVU91
+ 300 0162 214B     		ldr	r3, .L8+72
+ 301 0164 1B88     		ldrh	r3, [r3]
+ 302 0166 9BB2     		uxth	r3, r3
+ 303 0168 1E4A     		ldr	r2, .L8+68
+ 304 016a 1380     		strh	r3, [r2]	@ movhi
+  61:Core/Src/main.c ****             TSB9 = millis;
+ 305              		.loc 1 61 13 is_stmt 1 view .LVU92
+ 306              		.loc 1 61 18 is_stmt 0 view .LVU93
+ 307 016c 0E4B     		ldr	r3, .L8+8
+ 308 016e 1B68     		ldr	r3, [r3]
+ 309 0170 9BB2     		uxth	r3, r3
+ 310 0172 1E4A     		ldr	r2, .L8+76
+ 311 0174 1380     		strh	r3, [r2]	@ movhi
+ 312              	.L1:
+  62:Core/Src/main.c ****         }
+  63:Core/Src/main.c ****     }
+  64:Core/Src/main.c **** }
+ 313              		.loc 1 64 1 view .LVU94
+ 314 0176 7047     		bx	lr
+ 315              	.L7:
+  29:Core/Src/main.c ****                     if (currentFreqsMode2[selLED] > 2){
+ 316              		.loc 1 29 21 is_stmt 1 view .LVU95
+  29:Core/Src/main.c ****                     if (currentFreqsMode2[selLED] > 2){
+ 317              		.loc 1 29 38 is_stmt 0 view .LVU96
+ 318 0178 1948     		ldr	r0, .L8+64
+ 319 017a 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 320 017c D2B2     		uxtb	r2, r2
+ 321 017e 1D49     		ldr	r1, .L8+84
+ 322 0180 8B5C     		ldrb	r3, [r1, r2]	@ zero_extendqisi2
+  29:Core/Src/main.c ****                     if (currentFreqsMode2[selLED] > 2){
+ 323              		.loc 1 29 46 view .LVU97
+ 324 0182 0133     		adds	r3, r3, #1
+ 325 0184 DBB2     		uxtb	r3, r3
+ 326 0186 8B54     		strb	r3, [r1, r2]
+  30:Core/Src/main.c ****                         currentFreqsMode2[selLED] = 0;
+ 327              		.loc 1 30 21 is_stmt 1 view .LVU98
+  30:Core/Src/main.c ****                         currentFreqsMode2[selLED] = 0;
+ 328              		.loc 1 30 42 is_stmt 0 view .LVU99
+ 329 0188 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 330 018a DBB2     		uxtb	r3, r3
+ 331 018c CB5C     		ldrb	r3, [r1, r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 8
+
+
+  30:Core/Src/main.c ****                         currentFreqsMode2[selLED] = 0;
+ 332              		.loc 1 30 24 view .LVU100
+ 333 018e 022B     		cmp	r3, #2
+ 334 0190 99D9     		bls	.L3
+  31:Core/Src/main.c ****                     }
+ 335              		.loc 1 31 25 is_stmt 1 view .LVU101
+  31:Core/Src/main.c ****                     }
+ 336              		.loc 1 31 42 is_stmt 0 view .LVU102
+ 337 0192 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 338 0194 DBB2     		uxtb	r3, r3
+  31:Core/Src/main.c ****                     }
+ 339              		.loc 1 31 51 view .LVU103
+ 340 0196 0A46     		mov	r2, r1
+ 341 0198 0021     		movs	r1, #0
+ 342 019a D154     		strb	r1, [r2, r3]
+ 343 019c 93E7     		b	.L3
+ 344              	.L9:
+ 345 019e 00BF     		.align	2
+ 346              	.L8:
+ 347 01a0 00000000 		.word	p_countB3
+ 348 01a4 00000000 		.word	countB3
+ 349 01a8 00000000 		.word	millis
+ 350 01ac 00000000 		.word	TSB3
+ 351 01b0 00000000 		.word	debounce_thresh
+ 352 01b4 00000000 		.word	counterB3
+ 353 01b8 00000000 		.word	mode
+ 354 01bc 00000000 		.word	p_countB5
+ 355 01c0 00000000 		.word	countB5
+ 356 01c4 00000000 		.word	TSB5
+ 357 01c8 00000000 		.word	counterB5
+ 358 01cc 00000000 		.word	currentFreqMode1
+ 359 01d0 00000000 		.word	p_countB7
+ 360 01d4 00000000 		.word	countB7
+ 361 01d8 00000000 		.word	TSB7
+ 362 01dc 00000000 		.word	counterB7
+ 363 01e0 00000000 		.word	selLED
+ 364 01e4 00000000 		.word	p_countB9
+ 365 01e8 00000000 		.word	countB9
+ 366 01ec 00000000 		.word	TSB9
+ 367 01f0 00000000 		.word	counterB9
+ 368 01f4 00000000 		.word	currentFreqsMode2
+ 369              		.cfi_endproc
+ 370              	.LFE65:
+ 372              		.section	.text.updateLEDs,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	updateLEDs
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 379              	updateLEDs:
+ 380              	.LFB66:
+  65:Core/Src/main.c **** 
+  66:Core/Src/main.c **** void updateLEDs(){
+ 381              		.loc 1 66 18 is_stmt 1 view -0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 9
+
+
+ 385              		@ link register save eliminated.
+  67:Core/Src/main.c ****     if(G0){
+ 386              		.loc 1 67 5 view .LVU105
+ 387              		.loc 1 67 8 is_stmt 0 view .LVU106
+ 388 0000 384B     		ldr	r3, .L23
+ 389 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 390              		.loc 1 67 7 view .LVU107
+ 391 0004 002B     		cmp	r3, #0
+ 392 0006 32D0     		beq	.L11
+  68:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS0);
+ 393              		.loc 1 68 9 is_stmt 1 view .LVU108
+ 394 0008 374A     		ldr	r2, .L23+4
+ 395 000a 1369     		ldr	r3, [r2, #16]
+ 396 000c 43F00103 		orr	r3, r3, #1
+ 397 0010 1361     		str	r3, [r2, #16]
+ 398              	.L12:
+  69:Core/Src/main.c ****     }else if (!G0){
+  70:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR0);
+  71:Core/Src/main.c ****     }
+  72:Core/Src/main.c ****     if(R1){
+ 399              		.loc 1 72 5 view .LVU109
+ 400              		.loc 1 72 8 is_stmt 0 view .LVU110
+ 401 0012 364B     		ldr	r3, .L23+8
+ 402 0014 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 403              		.loc 1 72 7 view .LVU111
+ 404 0016 002B     		cmp	r3, #0
+ 405 0018 33D0     		beq	.L13
+  73:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS1);
+ 406              		.loc 1 73 9 is_stmt 1 view .LVU112
+ 407 001a 334A     		ldr	r2, .L23+4
+ 408 001c 1369     		ldr	r3, [r2, #16]
+ 409 001e 43F00203 		orr	r3, r3, #2
+ 410 0022 1361     		str	r3, [r2, #16]
+ 411              	.L14:
+  74:Core/Src/main.c ****     }else if (!R1){
+  75:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR1);
+  76:Core/Src/main.c ****     }
+  77:Core/Src/main.c ****     if(B2){
+ 412              		.loc 1 77 5 view .LVU113
+ 413              		.loc 1 77 8 is_stmt 0 view .LVU114
+ 414 0024 324B     		ldr	r3, .L23+12
+ 415 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 416              		.loc 1 77 7 view .LVU115
+ 417 0028 002B     		cmp	r3, #0
+ 418 002a 34D0     		beq	.L15
+  78:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS2);
+ 419              		.loc 1 78 9 is_stmt 1 view .LVU116
+ 420 002c 2E4A     		ldr	r2, .L23+4
+ 421 002e 1369     		ldr	r3, [r2, #16]
+ 422 0030 43F00403 		orr	r3, r3, #4
+ 423 0034 1361     		str	r3, [r2, #16]
+ 424              	.L16:
+  79:Core/Src/main.c ****     }else if (!B2){
+  80:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR2);
+  81:Core/Src/main.c ****     }
+  82:Core/Src/main.c ****     if(B5){
+ 425              		.loc 1 82 5 view .LVU117
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 10
+
+
+ 426              		.loc 1 82 8 is_stmt 0 view .LVU118
+ 427 0036 2F4B     		ldr	r3, .L23+16
+ 428 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 429              		.loc 1 82 7 view .LVU119
+ 430 003a 002B     		cmp	r3, #0
+ 431 003c 35D0     		beq	.L17
+  83:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS5);
+ 432              		.loc 1 83 9 is_stmt 1 view .LVU120
+ 433 003e 2A4A     		ldr	r2, .L23+4
+ 434 0040 1369     		ldr	r3, [r2, #16]
+ 435 0042 43F02003 		orr	r3, r3, #32
+ 436 0046 1361     		str	r3, [r2, #16]
+ 437              	.L18:
+  84:Core/Src/main.c ****     }else if (!B5){
+  85:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR5);
+  86:Core/Src/main.c ****     }
+  87:Core/Src/main.c ****     if(R6){
+ 438              		.loc 1 87 5 view .LVU121
+ 439              		.loc 1 87 8 is_stmt 0 view .LVU122
+ 440 0048 2B4B     		ldr	r3, .L23+20
+ 441 004a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 442              		.loc 1 87 7 view .LVU123
+ 443 004c 002B     		cmp	r3, #0
+ 444 004e 36D0     		beq	.L19
+  88:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS6);
+ 445              		.loc 1 88 9 is_stmt 1 view .LVU124
+ 446 0050 254A     		ldr	r2, .L23+4
+ 447 0052 1369     		ldr	r3, [r2, #16]
+ 448 0054 43F04003 		orr	r3, r3, #64
+ 449 0058 1361     		str	r3, [r2, #16]
+ 450              	.L20:
+  89:Core/Src/main.c ****     }else if (!R6){
+  90:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR6);
+  91:Core/Src/main.c ****     }
+  92:Core/Src/main.c ****     if(G7){
+ 451              		.loc 1 92 5 view .LVU125
+ 452              		.loc 1 92 8 is_stmt 0 view .LVU126
+ 453 005a 284B     		ldr	r3, .L23+24
+ 454 005c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 455              		.loc 1 92 7 view .LVU127
+ 456 005e 002B     		cmp	r3, #0
+ 457 0060 37D0     		beq	.L21
+  93:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS7);
+ 458              		.loc 1 93 9 is_stmt 1 view .LVU128
+ 459 0062 214A     		ldr	r2, .L23+4
+ 460 0064 1369     		ldr	r3, [r2, #16]
+ 461 0066 43F08003 		orr	r3, r3, #128
+ 462 006a 1361     		str	r3, [r2, #16]
+ 463 006c 7047     		bx	lr
+ 464              	.L11:
+  69:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR0);
+ 465              		.loc 1 69 11 view .LVU129
+  69:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR0);
+ 466              		.loc 1 69 15 is_stmt 0 view .LVU130
+ 467 006e 1D4B     		ldr	r3, .L23
+ 468 0070 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  69:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR0);
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 11
+
+
+ 469              		.loc 1 69 14 view .LVU131
+ 470 0072 002B     		cmp	r3, #0
+ 471 0074 CDD1     		bne	.L12
+  70:Core/Src/main.c ****     }
+ 472              		.loc 1 70 9 is_stmt 1 view .LVU132
+ 473 0076 1C4A     		ldr	r2, .L23+4
+ 474 0078 1369     		ldr	r3, [r2, #16]
+ 475 007a 43F48033 		orr	r3, r3, #65536
+ 476 007e 1361     		str	r3, [r2, #16]
+ 477 0080 C7E7     		b	.L12
+ 478              	.L13:
+  74:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR1);
+ 479              		.loc 1 74 11 view .LVU133
+  74:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR1);
+ 480              		.loc 1 74 15 is_stmt 0 view .LVU134
+ 481 0082 1A4B     		ldr	r3, .L23+8
+ 482 0084 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  74:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR1);
+ 483              		.loc 1 74 14 view .LVU135
+ 484 0086 002B     		cmp	r3, #0
+ 485 0088 CCD1     		bne	.L14
+  75:Core/Src/main.c ****     }
+ 486              		.loc 1 75 9 is_stmt 1 view .LVU136
+ 487 008a 174A     		ldr	r2, .L23+4
+ 488 008c 1369     		ldr	r3, [r2, #16]
+ 489 008e 43F40033 		orr	r3, r3, #131072
+ 490 0092 1361     		str	r3, [r2, #16]
+ 491 0094 C6E7     		b	.L14
+ 492              	.L15:
+  79:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR2);
+ 493              		.loc 1 79 11 view .LVU137
+  79:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR2);
+ 494              		.loc 1 79 15 is_stmt 0 view .LVU138
+ 495 0096 164B     		ldr	r3, .L23+12
+ 496 0098 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  79:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR2);
+ 497              		.loc 1 79 14 view .LVU139
+ 498 009a 002B     		cmp	r3, #0
+ 499 009c CBD1     		bne	.L16
+  80:Core/Src/main.c ****     }
+ 500              		.loc 1 80 9 is_stmt 1 view .LVU140
+ 501 009e 124A     		ldr	r2, .L23+4
+ 502 00a0 1369     		ldr	r3, [r2, #16]
+ 503 00a2 43F48023 		orr	r3, r3, #262144
+ 504 00a6 1361     		str	r3, [r2, #16]
+ 505 00a8 C5E7     		b	.L16
+ 506              	.L17:
+  84:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR5);
+ 507              		.loc 1 84 11 view .LVU141
+  84:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR5);
+ 508              		.loc 1 84 15 is_stmt 0 view .LVU142
+ 509 00aa 124B     		ldr	r3, .L23+16
+ 510 00ac 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  84:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR5);
+ 511              		.loc 1 84 14 view .LVU143
+ 512 00ae 002B     		cmp	r3, #0
+ 513 00b0 CAD1     		bne	.L18
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 12
+
+
+  85:Core/Src/main.c ****     }
+ 514              		.loc 1 85 9 is_stmt 1 view .LVU144
+ 515 00b2 0D4A     		ldr	r2, .L23+4
+ 516 00b4 1369     		ldr	r3, [r2, #16]
+ 517 00b6 43F40013 		orr	r3, r3, #2097152
+ 518 00ba 1361     		str	r3, [r2, #16]
+ 519 00bc C4E7     		b	.L18
+ 520              	.L19:
+  89:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR6);
+ 521              		.loc 1 89 11 view .LVU145
+  89:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR6);
+ 522              		.loc 1 89 15 is_stmt 0 view .LVU146
+ 523 00be 0E4B     		ldr	r3, .L23+20
+ 524 00c0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  89:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR6);
+ 525              		.loc 1 89 14 view .LVU147
+ 526 00c2 002B     		cmp	r3, #0
+ 527 00c4 C9D1     		bne	.L20
+  90:Core/Src/main.c ****     }
+ 528              		.loc 1 90 9 is_stmt 1 view .LVU148
+ 529 00c6 084A     		ldr	r2, .L23+4
+ 530 00c8 1369     		ldr	r3, [r2, #16]
+ 531 00ca 43F48003 		orr	r3, r3, #4194304
+ 532 00ce 1361     		str	r3, [r2, #16]
+ 533 00d0 C3E7     		b	.L20
+ 534              	.L21:
+  94:Core/Src/main.c ****     }else if (!G7){
+ 535              		.loc 1 94 11 view .LVU149
+ 536              		.loc 1 94 15 is_stmt 0 view .LVU150
+ 537 00d2 0A4B     		ldr	r3, .L23+24
+ 538 00d4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 539              		.loc 1 94 14 view .LVU151
+ 540 00d6 23B9     		cbnz	r3, .L10
+  95:Core/Src/main.c ****         SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR7);
+ 541              		.loc 1 95 9 is_stmt 1 view .LVU152
+ 542 00d8 034A     		ldr	r2, .L23+4
+ 543 00da 1369     		ldr	r3, [r2, #16]
+ 544 00dc 43F40003 		orr	r3, r3, #8388608
+ 545 00e0 1361     		str	r3, [r2, #16]
+ 546              	.L10:
+  96:Core/Src/main.c ****     }
+  97:Core/Src/main.c **** }
+ 547              		.loc 1 97 1 is_stmt 0 view .LVU153
+ 548 00e2 7047     		bx	lr
+ 549              	.L24:
+ 550              		.align	2
+ 551              	.L23:
+ 552 00e4 00000000 		.word	G0
+ 553 00e8 00080140 		.word	1073809408
+ 554 00ec 00000000 		.word	R1
+ 555 00f0 00000000 		.word	B2
+ 556 00f4 00000000 		.word	B5
+ 557 00f8 00000000 		.word	R6
+ 558 00fc 00000000 		.word	G7
+ 559              		.cfi_endproc
+ 560              	.LFE66:
+ 562              		.section	.text.Hz2ms,"ax",%progbits
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 13
+
+
+ 563              		.align	1
+ 564              		.global	Hz2ms
+ 565              		.syntax unified
+ 566              		.thumb
+ 567              		.thumb_func
+ 569              	Hz2ms:
+ 570              	.LVL0:
+ 571              	.LFB67:
+  98:Core/Src/main.c **** 
+  99:Core/Src/main.c **** uint32_t Hz2ms(float hz){
+ 572              		.loc 1 99 25 is_stmt 1 view -0
+ 573              		.cfi_startproc
+ 574              		@ args = 0, pretend = 0, frame = 0
+ 575              		@ frame_needed = 0, uses_anonymous_args = 0
+ 576              		.loc 1 99 25 is_stmt 0 view .LVU155
+ 577 0000 08B5     		push	{r3, lr}
+ 578              	.LCFI0:
+ 579              		.cfi_def_cfa_offset 8
+ 580              		.cfi_offset 3, -8
+ 581              		.cfi_offset 14, -4
+ 582 0002 0146     		mov	r1, r0
+ 100:Core/Src/main.c ****     return (float)(1/hz)*1000;
+ 583              		.loc 1 100 5 is_stmt 1 view .LVU156
+ 584              		.loc 1 100 12 is_stmt 0 view .LVU157
+ 585 0004 4FF07E50 		mov	r0, #1065353216
+ 586              	.LVL1:
+ 587              		.loc 1 100 12 view .LVU158
+ 588 0008 FFF7FEFF 		bl	__aeabi_fdiv
+ 589              	.LVL2:
+ 590              		.loc 1 100 25 view .LVU159
+ 591 000c 0249     		ldr	r1, .L27
+ 592 000e FFF7FEFF 		bl	__aeabi_fmul
+ 593              	.LVL3:
+ 594 0012 FFF7FEFF 		bl	__aeabi_f2uiz
+ 595              	.LVL4:
+ 101:Core/Src/main.c **** }
+ 596              		.loc 1 101 1 view .LVU160
+ 597 0016 08BD     		pop	{r3, pc}
+ 598              	.L28:
+ 599              		.align	2
+ 600              	.L27:
+ 601 0018 00007A44 		.word	1148846080
+ 602              		.cfi_endproc
+ 603              	.LFE67:
+ 605              		.section	.text.LEDsOff,"ax",%progbits
+ 606              		.align	1
+ 607              		.global	LEDsOff
+ 608              		.syntax unified
+ 609              		.thumb
+ 610              		.thumb_func
+ 612              	LEDsOff:
+ 613              	.LFB68:
+ 102:Core/Src/main.c **** 
+ 103:Core/Src/main.c **** void LEDsOff(){
+ 614              		.loc 1 103 15 is_stmt 1 view -0
+ 615              		.cfi_startproc
+ 616              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 14
+
+
+ 617              		@ frame_needed = 0, uses_anonymous_args = 0
+ 618              		@ link register save eliminated.
+ 104:Core/Src/main.c ****     B2 = 0;
+ 619              		.loc 1 104 5 view .LVU162
+ 620              		.loc 1 104 8 is_stmt 0 view .LVU163
+ 621 0000 0023     		movs	r3, #0
+ 622 0002 064A     		ldr	r2, .L30
+ 623 0004 1370     		strb	r3, [r2]
+ 105:Core/Src/main.c ****     B5 = 0;
+ 624              		.loc 1 105 5 is_stmt 1 view .LVU164
+ 625              		.loc 1 105 8 is_stmt 0 view .LVU165
+ 626 0006 064A     		ldr	r2, .L30+4
+ 627 0008 1370     		strb	r3, [r2]
+ 106:Core/Src/main.c ****     G0 = 0;
+ 628              		.loc 1 106 5 is_stmt 1 view .LVU166
+ 629              		.loc 1 106 8 is_stmt 0 view .LVU167
+ 630 000a 064A     		ldr	r2, .L30+8
+ 631 000c 1370     		strb	r3, [r2]
+ 107:Core/Src/main.c ****     R1 = 0;
+ 632              		.loc 1 107 5 is_stmt 1 view .LVU168
+ 633              		.loc 1 107 8 is_stmt 0 view .LVU169
+ 634 000e 064A     		ldr	r2, .L30+12
+ 635 0010 1370     		strb	r3, [r2]
+ 108:Core/Src/main.c ****     R6 = 0;
+ 636              		.loc 1 108 5 is_stmt 1 view .LVU170
+ 637              		.loc 1 108 8 is_stmt 0 view .LVU171
+ 638 0012 064A     		ldr	r2, .L30+16
+ 639 0014 1370     		strb	r3, [r2]
+ 109:Core/Src/main.c ****     G7 = 0;
+ 640              		.loc 1 109 5 is_stmt 1 view .LVU172
+ 641              		.loc 1 109 8 is_stmt 0 view .LVU173
+ 642 0016 064A     		ldr	r2, .L30+20
+ 643 0018 1370     		strb	r3, [r2]
+ 110:Core/Src/main.c **** }
+ 644              		.loc 1 110 1 view .LVU174
+ 645 001a 7047     		bx	lr
+ 646              	.L31:
+ 647              		.align	2
+ 648              	.L30:
+ 649 001c 00000000 		.word	B2
+ 650 0020 00000000 		.word	B5
+ 651 0024 00000000 		.word	G0
+ 652 0028 00000000 		.word	R1
+ 653 002c 00000000 		.word	R6
+ 654 0030 00000000 		.word	G7
+ 655              		.cfi_endproc
+ 656              	.LFE68:
+ 658              		.section	.text.function1,"ax",%progbits
+ 659              		.align	1
+ 660              		.global	function1
+ 661              		.syntax unified
+ 662              		.thumb
+ 663              		.thumb_func
+ 665              	function1:
+ 666              	.LFB69:
+ 111:Core/Src/main.c **** 
+ 112:Core/Src/main.c **** void function1(){
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 15
+
+
+ 667              		.loc 1 112 17 is_stmt 1 view -0
+ 668              		.cfi_startproc
+ 669              		@ args = 0, pretend = 0, frame = 0
+ 670              		@ frame_needed = 0, uses_anonymous_args = 0
+ 671 0000 08B5     		push	{r3, lr}
+ 672              	.LCFI1:
+ 673              		.cfi_def_cfa_offset 8
+ 674              		.cfi_offset 3, -8
+ 675              		.cfi_offset 14, -4
+ 113:Core/Src/main.c ****     static uint16_t step = 0; // variable to know the step of the commutation
+ 676              		.loc 1 113 5 view .LVU176
+ 114:Core/Src/main.c ****     static uint16_t t_step = 0; // how long will the commutation last
+ 677              		.loc 1 114 5 view .LVU177
+ 115:Core/Src/main.c ****     static uint32_t t_prev_step = 0; // starting time of current step
+ 678              		.loc 1 115 5 view .LVU178
+ 116:Core/Src/main.c ****     
+ 117:Core/Src/main.c ****     // calculate the time to wait next
+ 118:Core/Src/main.c ****     t_step = Hz2ms((float)Mode1Freqs[currentFreqMode1]);
+ 679              		.loc 1 118 5 view .LVU179
+ 680              		.loc 1 118 14 is_stmt 0 view .LVU180
+ 681 0002 204B     		ldr	r3, .L41
+ 682 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 683 0006 DBB2     		uxtb	r3, r3
+ 684              		.loc 1 118 37 view .LVU181
+ 685 0008 1F4A     		ldr	r2, .L41+4
+ 686 000a 52F82300 		ldr	r0, [r2, r3, lsl #2]	@ float
+ 687              		.loc 1 118 14 view .LVU182
+ 688 000e FFF7FEFF 		bl	Hz2ms
+ 689              	.LVL5:
+ 690              		.loc 1 118 12 discriminator 1 view .LVU183
+ 691 0012 1E4B     		ldr	r3, .L41+8
+ 692 0014 1880     		strh	r0, [r3]	@ movhi
+ 119:Core/Src/main.c ****     // update the current step based on the time
+ 120:Core/Src/main.c ****     if (t_step <= millis - t_prev_step){
+ 693              		.loc 1 120 5 is_stmt 1 view .LVU184
+ 694              		.loc 1 120 26 is_stmt 0 view .LVU185
+ 695 0016 1E4B     		ldr	r3, .L41+12
+ 696 0018 1B68     		ldr	r3, [r3]
+ 697 001a 1E4A     		ldr	r2, .L41+16
+ 698 001c 1268     		ldr	r2, [r2]
+ 699 001e 9B1A     		subs	r3, r3, r2
+ 700              		.loc 1 120 8 view .LVU186
+ 701 0020 80B2     		uxth	r0, r0
+ 702 0022 8342     		cmp	r3, r0
+ 703 0024 0DD3     		bcc	.L33
+ 121:Core/Src/main.c ****         step++;
+ 704              		.loc 1 121 9 is_stmt 1 view .LVU187
+ 705              		.loc 1 121 13 is_stmt 0 view .LVU188
+ 706 0026 1C4A     		ldr	r2, .L41+20
+ 707 0028 1388     		ldrh	r3, [r2]
+ 708 002a 0133     		adds	r3, r3, #1
+ 709 002c 9BB2     		uxth	r3, r3
+ 710 002e 1380     		strh	r3, [r2]	@ movhi
+ 122:Core/Src/main.c ****         t_prev_step = millis;
+ 711              		.loc 1 122 9 is_stmt 1 view .LVU189
+ 712              		.loc 1 122 21 is_stmt 0 view .LVU190
+ 713 0030 174A     		ldr	r2, .L41+12
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 16
+
+
+ 714 0032 1168     		ldr	r1, [r2]
+ 715 0034 174A     		ldr	r2, .L41+16
+ 716 0036 1160     		str	r1, [r2]
+ 123:Core/Src/main.c ****         if (step > 2){step = 0;}
+ 717              		.loc 1 123 9 is_stmt 1 view .LVU191
+ 718              		.loc 1 123 12 is_stmt 0 view .LVU192
+ 719 0038 022B     		cmp	r3, #2
+ 720 003a 02D9     		bls	.L33
+ 721              		.loc 1 123 23 is_stmt 1 discriminator 1 view .LVU193
+ 722              		.loc 1 123 28 is_stmt 0 discriminator 1 view .LVU194
+ 723 003c 164B     		ldr	r3, .L41+20
+ 724 003e 0022     		movs	r2, #0
+ 725 0040 1A80     		strh	r2, [r3]	@ movhi
+ 726              	.L33:
+ 124:Core/Src/main.c ****     }
+ 125:Core/Src/main.c ****     // updating LEDs' states
+ 126:Core/Src/main.c ****     if(step == 0){
+ 727              		.loc 1 126 5 is_stmt 1 view .LVU195
+ 728              		.loc 1 126 13 is_stmt 0 view .LVU196
+ 729 0042 154B     		ldr	r3, .L41+20
+ 730 0044 1B88     		ldrh	r3, [r3]
+ 731              		.loc 1 126 7 view .LVU197
+ 732 0046 23B1     		cbz	r3, .L38
+ 127:Core/Src/main.c ****         LEDsOff();
+ 128:Core/Src/main.c ****         B2 = 1;
+ 129:Core/Src/main.c ****         B5 = 1;
+ 130:Core/Src/main.c ****     }else if(step == 1){
+ 733              		.loc 1 130 11 is_stmt 1 view .LVU198
+ 734              		.loc 1 130 13 is_stmt 0 view .LVU199
+ 735 0048 012B     		cmp	r3, #1
+ 736 004a 0AD0     		beq	.L39
+ 131:Core/Src/main.c ****         LEDsOff();
+ 132:Core/Src/main.c ****         R1 = 1;
+ 133:Core/Src/main.c ****         R6 = 1;
+ 134:Core/Src/main.c ****     }else if (step == 2){
+ 737              		.loc 1 134 11 is_stmt 1 view .LVU200
+ 738              		.loc 1 134 14 is_stmt 0 view .LVU201
+ 739 004c 022B     		cmp	r3, #2
+ 740 004e 10D0     		beq	.L40
+ 741              	.L32:
+ 135:Core/Src/main.c ****         LEDsOff();
+ 136:Core/Src/main.c ****         G0 = 1;
+ 137:Core/Src/main.c ****         G7 = 1;
+ 138:Core/Src/main.c ****     }
+ 139:Core/Src/main.c **** 
+ 140:Core/Src/main.c **** }
+ 742              		.loc 1 140 1 view .LVU202
+ 743 0050 08BD     		pop	{r3, pc}
+ 744              	.L38:
+ 127:Core/Src/main.c ****         B2 = 1;
+ 745              		.loc 1 127 9 is_stmt 1 view .LVU203
+ 746 0052 FFF7FEFF 		bl	LEDsOff
+ 747              	.LVL6:
+ 128:Core/Src/main.c ****         B5 = 1;
+ 748              		.loc 1 128 9 view .LVU204
+ 128:Core/Src/main.c ****         B5 = 1;
+ 749              		.loc 1 128 12 is_stmt 0 view .LVU205
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 17
+
+
+ 750 0056 0123     		movs	r3, #1
+ 751 0058 104A     		ldr	r2, .L41+24
+ 752 005a 1370     		strb	r3, [r2]
+ 129:Core/Src/main.c ****     }else if(step == 1){
+ 753              		.loc 1 129 9 is_stmt 1 view .LVU206
+ 129:Core/Src/main.c ****     }else if(step == 1){
+ 754              		.loc 1 129 12 is_stmt 0 view .LVU207
+ 755 005c 104A     		ldr	r2, .L41+28
+ 756 005e 1370     		strb	r3, [r2]
+ 757 0060 F6E7     		b	.L32
+ 758              	.L39:
+ 131:Core/Src/main.c ****         R1 = 1;
+ 759              		.loc 1 131 9 is_stmt 1 view .LVU208
+ 760 0062 FFF7FEFF 		bl	LEDsOff
+ 761              	.LVL7:
+ 132:Core/Src/main.c ****         R6 = 1;
+ 762              		.loc 1 132 9 view .LVU209
+ 132:Core/Src/main.c ****         R6 = 1;
+ 763              		.loc 1 132 12 is_stmt 0 view .LVU210
+ 764 0066 0123     		movs	r3, #1
+ 765 0068 0E4A     		ldr	r2, .L41+32
+ 766 006a 1370     		strb	r3, [r2]
+ 133:Core/Src/main.c ****     }else if (step == 2){
+ 767              		.loc 1 133 9 is_stmt 1 view .LVU211
+ 133:Core/Src/main.c ****     }else if (step == 2){
+ 768              		.loc 1 133 12 is_stmt 0 view .LVU212
+ 769 006c 0E4A     		ldr	r2, .L41+36
+ 770 006e 1370     		strb	r3, [r2]
+ 771 0070 EEE7     		b	.L32
+ 772              	.L40:
+ 135:Core/Src/main.c ****         G0 = 1;
+ 773              		.loc 1 135 9 is_stmt 1 view .LVU213
+ 774 0072 FFF7FEFF 		bl	LEDsOff
+ 775              	.LVL8:
+ 136:Core/Src/main.c ****         G7 = 1;
+ 776              		.loc 1 136 9 view .LVU214
+ 136:Core/Src/main.c ****         G7 = 1;
+ 777              		.loc 1 136 12 is_stmt 0 view .LVU215
+ 778 0076 0123     		movs	r3, #1
+ 779 0078 0C4A     		ldr	r2, .L41+40
+ 780 007a 1370     		strb	r3, [r2]
+ 137:Core/Src/main.c ****     }
+ 781              		.loc 1 137 9 is_stmt 1 view .LVU216
+ 137:Core/Src/main.c ****     }
+ 782              		.loc 1 137 12 is_stmt 0 view .LVU217
+ 783 007c 0C4A     		ldr	r2, .L41+44
+ 784 007e 1370     		strb	r3, [r2]
+ 785              		.loc 1 140 1 view .LVU218
+ 786 0080 E6E7     		b	.L32
+ 787              	.L42:
+ 788 0082 00BF     		.align	2
+ 789              	.L41:
+ 790 0084 00000000 		.word	currentFreqMode1
+ 791 0088 00000000 		.word	Mode1Freqs
+ 792 008c 00000000 		.word	t_step.5
+ 793 0090 00000000 		.word	millis
+ 794 0094 00000000 		.word	t_prev_step.4
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 18
+
+
+ 795 0098 00000000 		.word	step.3
+ 796 009c 00000000 		.word	B2
+ 797 00a0 00000000 		.word	B5
+ 798 00a4 00000000 		.word	R1
+ 799 00a8 00000000 		.word	R6
+ 800 00ac 00000000 		.word	G0
+ 801 00b0 00000000 		.word	G7
+ 802              		.cfi_endproc
+ 803              	.LFE69:
+ 805              		.section	.text.function2,"ax",%progbits
+ 806              		.align	1
+ 807              		.global	function2
+ 808              		.syntax unified
+ 809              		.thumb
+ 810              		.thumb_func
+ 812              	function2:
+ 813              	.LFB70:
+ 141:Core/Src/main.c **** 
+ 142:Core/Src/main.c **** void function2(){
+ 814              		.loc 1 142 17 is_stmt 1 view -0
+ 815              		.cfi_startproc
+ 816              		@ args = 0, pretend = 0, frame = 0
+ 817              		@ frame_needed = 0, uses_anonymous_args = 0
+ 818 0000 10B5     		push	{r4, lr}
+ 819              	.LCFI2:
+ 820              		.cfi_def_cfa_offset 8
+ 821              		.cfi_offset 4, -8
+ 822              		.cfi_offset 14, -4
+ 143:Core/Src/main.c ****     // last change of state for G0, R1, B2, B5, R6, G7
+ 144:Core/Src/main.c ****     static uint32_t t_prev[6] = {0,0,0,0,0,0};
+ 823              		.loc 1 144 5 view .LVU220
+ 145:Core/Src/main.c ****     // current delay each LED has to wait to change states
+ 146:Core/Src/main.c ****     static uint16_t t_step[6] = {0,0,0,0,0,0};
+ 824              		.loc 1 146 5 view .LVU221
+ 147:Core/Src/main.c ****     static uint8_t LEDstates[6] = {0,0,0,0,0,0};
+ 825              		.loc 1 147 5 view .LVU222
+ 148:Core/Src/main.c **** 
+ 149:Core/Src/main.c ****     // calculate ALL needed waiting times
+ 150:Core/Src/main.c ****     for (uint8_t i = 0; i < 6; i++){
+ 826              		.loc 1 150 5 view .LVU223
+ 827              	.LBB2:
+ 828              		.loc 1 150 10 view .LVU224
+ 829              	.LVL9:
+ 830              		.loc 1 150 18 is_stmt 0 view .LVU225
+ 831 0002 0024     		movs	r4, #0
+ 832              		.loc 1 150 5 view .LVU226
+ 833 0004 0CE0     		b	.L44
+ 834              	.LVL10:
+ 835              	.L45:
+ 151:Core/Src/main.c ****         t_step[i] = Hz2ms((float)Mode2Freqs[currentFreqsMode2[i]]);
+ 836              		.loc 1 151 9 is_stmt 1 view .LVU227
+ 837              		.loc 1 151 62 is_stmt 0 view .LVU228
+ 838 0006 204B     		ldr	r3, .L51
+ 839 0008 1B5D     		ldrb	r3, [r3, r4]	@ zero_extendqisi2
+ 840 000a DBB2     		uxtb	r3, r3
+ 841              		.loc 1 151 44 view .LVU229
+ 842 000c 1F4A     		ldr	r2, .L51+4
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 19
+
+
+ 843 000e 52F82300 		ldr	r0, [r2, r3, lsl #2]	@ float
+ 844              		.loc 1 151 21 view .LVU230
+ 845 0012 FFF7FEFF 		bl	Hz2ms
+ 846              	.LVL11:
+ 847              		.loc 1 151 19 discriminator 1 view .LVU231
+ 848 0016 1E4B     		ldr	r3, .L51+8
+ 849 0018 23F81400 		strh	r0, [r3, r4, lsl #1]	@ movhi
+ 150:Core/Src/main.c ****         t_step[i] = Hz2ms((float)Mode2Freqs[currentFreqsMode2[i]]);
+ 850              		.loc 1 150 33 is_stmt 1 discriminator 3 view .LVU232
+ 851 001c 0134     		adds	r4, r4, #1
+ 852              	.LVL12:
+ 150:Core/Src/main.c ****         t_step[i] = Hz2ms((float)Mode2Freqs[currentFreqsMode2[i]]);
+ 853              		.loc 1 150 33 is_stmt 0 discriminator 3 view .LVU233
+ 854 001e E4B2     		uxtb	r4, r4
+ 855              	.LVL13:
+ 856              	.L44:
+ 150:Core/Src/main.c ****         t_step[i] = Hz2ms((float)Mode2Freqs[currentFreqsMode2[i]]);
+ 857              		.loc 1 150 27 is_stmt 1 discriminator 1 view .LVU234
+ 858 0020 052C     		cmp	r4, #5
+ 859 0022 F0D9     		bls	.L45
+ 860              	.LBE2:
+ 861              	.LBB3:
+ 152:Core/Src/main.c ****     }
+ 153:Core/Src/main.c **** 
+ 154:Core/Src/main.c ****     // update states for all LEDs
+ 155:Core/Src/main.c ****     for (uint8_t i = 0; i < 6; i++){
+ 862              		.loc 1 155 18 is_stmt 0 view .LVU235
+ 863 0024 0023     		movs	r3, #0
+ 864 0026 01E0     		b	.L46
+ 865              	.LVL14:
+ 866              	.L47:
+ 867              		.loc 1 155 33 is_stmt 1 discriminator 2 view .LVU236
+ 868 0028 0133     		adds	r3, r3, #1
+ 869              	.LVL15:
+ 870              		.loc 1 155 33 is_stmt 0 discriminator 2 view .LVU237
+ 871 002a DBB2     		uxtb	r3, r3
+ 872              	.LVL16:
+ 873              	.L46:
+ 874              		.loc 1 155 27 is_stmt 1 discriminator 1 view .LVU238
+ 875 002c 052B     		cmp	r3, #5
+ 876 002e 16D8     		bhi	.L50
+ 156:Core/Src/main.c ****         if(t_step[i] <= millis - t_prev[i]){
+ 877              		.loc 1 156 9 view .LVU239
+ 878              		.loc 1 156 18 is_stmt 0 view .LVU240
+ 879 0030 174A     		ldr	r2, .L51+8
+ 880 0032 32F81310 		ldrh	r1, [r2, r3, lsl #1]
+ 881              		.loc 1 156 32 view .LVU241
+ 882 0036 174A     		ldr	r2, .L51+12
+ 883 0038 1268     		ldr	r2, [r2]
+ 884              		.loc 1 156 40 view .LVU242
+ 885 003a 1748     		ldr	r0, .L51+16
+ 886 003c 50F82300 		ldr	r0, [r0, r3, lsl #2]
+ 887              		.loc 1 156 32 view .LVU243
+ 888 0040 121A     		subs	r2, r2, r0
+ 889              		.loc 1 156 11 view .LVU244
+ 890 0042 9142     		cmp	r1, r2
+ 891 0044 F0D8     		bhi	.L47
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 20
+
+
+ 157:Core/Src/main.c ****             //change state
+ 158:Core/Src/main.c ****             LEDstates[i] = !LEDstates[i];
+ 892              		.loc 1 158 13 is_stmt 1 view .LVU245
+ 893              		.loc 1 158 38 is_stmt 0 view .LVU246
+ 894 0046 1549     		ldr	r1, .L51+20
+ 895 0048 CA5C     		ldrb	r2, [r1, r3]	@ zero_extendqisi2
+ 896              		.loc 1 158 28 view .LVU247
+ 897 004a B2FA82F2 		clz	r2, r2
+ 898 004e 5209     		lsrs	r2, r2, #5
+ 899              		.loc 1 158 26 view .LVU248
+ 900 0050 CA54     		strb	r2, [r1, r3]
+ 159:Core/Src/main.c ****             // update time
+ 160:Core/Src/main.c ****             t_prev[i] = millis;
+ 901              		.loc 1 160 13 is_stmt 1 view .LVU249
+ 902              		.loc 1 160 23 is_stmt 0 view .LVU250
+ 903 0052 104A     		ldr	r2, .L51+12
+ 904 0054 1168     		ldr	r1, [r2]
+ 905 0056 104A     		ldr	r2, .L51+16
+ 906 0058 42F82310 		str	r1, [r2, r3, lsl #2]
+ 907 005c E4E7     		b	.L47
+ 908              	.L50:
+ 909              	.LBE3:
+ 161:Core/Src/main.c ****         }
+ 162:Core/Src/main.c ****     }
+ 163:Core/Src/main.c **** 
+ 164:Core/Src/main.c ****     G0 = LEDstates[0];
+ 910              		.loc 1 164 5 is_stmt 1 view .LVU251
+ 911              		.loc 1 164 19 is_stmt 0 view .LVU252
+ 912 005e 0F4B     		ldr	r3, .L51+20
+ 913              	.LVL17:
+ 914              		.loc 1 164 19 view .LVU253
+ 915 0060 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 916              		.loc 1 164 8 view .LVU254
+ 917 0062 0F4A     		ldr	r2, .L51+24
+ 918 0064 1170     		strb	r1, [r2]
+ 165:Core/Src/main.c ****     R1 = LEDstates[1];
+ 919              		.loc 1 165 5 is_stmt 1 view .LVU255
+ 920              		.loc 1 165 19 is_stmt 0 view .LVU256
+ 921 0066 5978     		ldrb	r1, [r3, #1]	@ zero_extendqisi2
+ 922              		.loc 1 165 8 view .LVU257
+ 923 0068 0E4A     		ldr	r2, .L51+28
+ 924 006a 1170     		strb	r1, [r2]
+ 166:Core/Src/main.c ****     B2 = LEDstates[2];
+ 925              		.loc 1 166 5 is_stmt 1 view .LVU258
+ 926              		.loc 1 166 19 is_stmt 0 view .LVU259
+ 927 006c 9978     		ldrb	r1, [r3, #2]	@ zero_extendqisi2
+ 928              		.loc 1 166 8 view .LVU260
+ 929 006e 0E4A     		ldr	r2, .L51+32
+ 930 0070 1170     		strb	r1, [r2]
+ 167:Core/Src/main.c ****     B5 = LEDstates[3];
+ 931              		.loc 1 167 5 is_stmt 1 view .LVU261
+ 932              		.loc 1 167 19 is_stmt 0 view .LVU262
+ 933 0072 D978     		ldrb	r1, [r3, #3]	@ zero_extendqisi2
+ 934              		.loc 1 167 8 view .LVU263
+ 935 0074 0D4A     		ldr	r2, .L51+36
+ 936 0076 1170     		strb	r1, [r2]
+ 168:Core/Src/main.c ****     R6 = LEDstates[4];
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 21
+
+
+ 937              		.loc 1 168 5 is_stmt 1 view .LVU264
+ 938              		.loc 1 168 19 is_stmt 0 view .LVU265
+ 939 0078 1979     		ldrb	r1, [r3, #4]	@ zero_extendqisi2
+ 940              		.loc 1 168 8 view .LVU266
+ 941 007a 0D4A     		ldr	r2, .L51+40
+ 942 007c 1170     		strb	r1, [r2]
+ 169:Core/Src/main.c ****     G7 = LEDstates[5];
+ 943              		.loc 1 169 5 is_stmt 1 view .LVU267
+ 944              		.loc 1 169 19 is_stmt 0 view .LVU268
+ 945 007e 5A79     		ldrb	r2, [r3, #5]	@ zero_extendqisi2
+ 946              		.loc 1 169 8 view .LVU269
+ 947 0080 0C4B     		ldr	r3, .L51+44
+ 948 0082 1A70     		strb	r2, [r3]
+ 170:Core/Src/main.c **** 
+ 171:Core/Src/main.c **** 
+ 172:Core/Src/main.c **** }
+ 949              		.loc 1 172 1 view .LVU270
+ 950 0084 10BD     		pop	{r4, pc}
+ 951              	.LVL18:
+ 952              	.L52:
+ 953              		.loc 1 172 1 view .LVU271
+ 954 0086 00BF     		.align	2
+ 955              	.L51:
+ 956 0088 00000000 		.word	currentFreqsMode2
+ 957 008c 00000000 		.word	Mode2Freqs
+ 958 0090 00000000 		.word	t_step.2
+ 959 0094 00000000 		.word	millis
+ 960 0098 00000000 		.word	t_prev.1
+ 961 009c 00000000 		.word	LEDstates.0
+ 962 00a0 00000000 		.word	G0
+ 963 00a4 00000000 		.word	R1
+ 964 00a8 00000000 		.word	B2
+ 965 00ac 00000000 		.word	B5
+ 966 00b0 00000000 		.word	R6
+ 967 00b4 00000000 		.word	G7
+ 968              		.cfi_endproc
+ 969              	.LFE70:
+ 971              		.section	.text.main,"ax",%progbits
+ 972              		.align	1
+ 973              		.global	main
+ 974              		.syntax unified
+ 975              		.thumb
+ 976              		.thumb_func
+ 978              	main:
+ 979              	.LFB71:
+ 173:Core/Src/main.c **** 
+ 174:Core/Src/main.c **** int main(void){
+ 980              		.loc 1 174 15 is_stmt 1 view -0
+ 981              		.cfi_startproc
+ 982              		@ Volatile: function does not return.
+ 983              		@ args = 0, pretend = 0, frame = 0
+ 984              		@ frame_needed = 0, uses_anonymous_args = 0
+ 985 0000 08B5     		push	{r3, lr}
+ 986              	.LCFI3:
+ 987              		.cfi_def_cfa_offset 8
+ 988              		.cfi_offset 3, -8
+ 989              		.cfi_offset 14, -4
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 22
+
+
+ 175:Core/Src/main.c ****     GPIO_init();
+ 990              		.loc 1 175 5 view .LVU273
+ 991 0002 FFF7FEFF 		bl	GPIO_init
+ 992              	.LVL19:
+ 176:Core/Src/main.c ****     RCC_init();
+ 993              		.loc 1 176 5 view .LVU274
+ 994 0006 FFF7FEFF 		bl	RCC_init
+ 995              	.LVL20:
+ 177:Core/Src/main.c ****     ITR_init();
+ 996              		.loc 1 177 5 view .LVU275
+ 997 000a FFF7FEFF 		bl	ITR_init
+ 998              	.LVL21:
+ 178:Core/Src/main.c ****     SysTick_init();
+ 999              		.loc 1 178 5 view .LVU276
+ 1000 000e FFF7FEFF 		bl	SysTick_init
+ 1001              	.LVL22:
+ 1002 0012 02E0     		b	.L54
+ 1003              	.L55:
+ 179:Core/Src/main.c **** 
+ 180:Core/Src/main.c ****     while(1){
+ 181:Core/Src/main.c ****         checkButtons();
+ 182:Core/Src/main.c ****         updateLEDs();
+ 183:Core/Src/main.c ****         if(!mode){
+ 184:Core/Src/main.c ****             function1();
+ 185:Core/Src/main.c ****         }else if (mode){
+ 1004              		.loc 1 185 15 view .LVU277
+ 1005              		.loc 1 185 19 is_stmt 0 view .LVU278
+ 1006 0014 084B     		ldr	r3, .L59
+ 1007 0016 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1008              		.loc 1 185 18 view .LVU279
+ 1009 0018 53B9     		cbnz	r3, .L58
+ 1010              	.L54:
+ 180:Core/Src/main.c ****         checkButtons();
+ 1011              		.loc 1 180 5 is_stmt 1 view .LVU280
+ 181:Core/Src/main.c ****         updateLEDs();
+ 1012              		.loc 1 181 9 view .LVU281
+ 1013 001a FFF7FEFF 		bl	checkButtons
+ 1014              	.LVL23:
+ 182:Core/Src/main.c ****         if(!mode){
+ 1015              		.loc 1 182 9 view .LVU282
+ 1016 001e FFF7FEFF 		bl	updateLEDs
+ 1017              	.LVL24:
+ 183:Core/Src/main.c ****             function1();
+ 1018              		.loc 1 183 9 view .LVU283
+ 183:Core/Src/main.c ****             function1();
+ 1019              		.loc 1 183 12 is_stmt 0 view .LVU284
+ 1020 0022 054B     		ldr	r3, .L59
+ 1021 0024 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 183:Core/Src/main.c ****             function1();
+ 1022              		.loc 1 183 11 view .LVU285
+ 1023 0026 002B     		cmp	r3, #0
+ 1024 0028 F4D1     		bne	.L55
+ 184:Core/Src/main.c ****         }else if (mode){
+ 1025              		.loc 1 184 13 is_stmt 1 view .LVU286
+ 1026 002a FFF7FEFF 		bl	function1
+ 1027              	.LVL25:
+ 1028 002e F4E7     		b	.L54
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 23
+
+
+ 1029              	.L58:
+ 186:Core/Src/main.c ****             function2();
+ 1030              		.loc 1 186 13 view .LVU287
+ 1031 0030 FFF7FEFF 		bl	function2
+ 1032              	.LVL26:
+ 1033 0034 F1E7     		b	.L54
+ 1034              	.L60:
+ 1035 0036 00BF     		.align	2
+ 1036              	.L59:
+ 1037 0038 00000000 		.word	mode
+ 1038              		.cfi_endproc
+ 1039              	.LFE71:
+ 1041              		.section	.bss.LEDstates.0,"aw",%nobits
+ 1042              		.align	2
+ 1045              	LEDstates.0:
+ 1046 0000 00000000 		.space	6
+ 1046      0000
+ 1047              		.section	.bss.t_prev.1,"aw",%nobits
+ 1048              		.align	2
+ 1051              	t_prev.1:
+ 1052 0000 00000000 		.space	24
+ 1052      00000000 
+ 1052      00000000 
+ 1052      00000000 
+ 1052      00000000 
+ 1053              		.section	.bss.t_step.2,"aw",%nobits
+ 1054              		.align	2
+ 1057              	t_step.2:
+ 1058 0000 00000000 		.space	12
+ 1058      00000000 
+ 1058      00000000 
+ 1059              		.section	.bss.step.3,"aw",%nobits
+ 1060              		.align	1
+ 1063              	step.3:
+ 1064 0000 0000     		.space	2
+ 1065              		.section	.bss.t_prev_step.4,"aw",%nobits
+ 1066              		.align	2
+ 1069              	t_prev_step.4:
+ 1070 0000 00000000 		.space	4
+ 1071              		.section	.bss.t_step.5,"aw",%nobits
+ 1072              		.align	1
+ 1075              	t_step.5:
+ 1076 0000 0000     		.space	2
+ 1077              		.text
+ 1078              	.Letext0:
+ 1079              		.file 2 "C:/SysGCC/arm-eabi/arm-none-eabi/include/machine/_default_types.h"
+ 1080              		.file 3 "C:/SysGCC/arm-eabi/arm-none-eabi/include/sys/_stdint.h"
+ 1081              		.file 4 "CMSIS/Devices/STM32F1xx/Inc/STM32f103xB/stm32f103xb.h"
+ 1082              		.file 5 "Core/Inc/variables.h"
+ 1083              		.file 6 "Core/Inc/Init.h"
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:19     .text.checkButtons:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:25     .text.checkButtons:00000000 checkButtons
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:347    .text.checkButtons:000001a0 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:373    .text.updateLEDs:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:379    .text.updateLEDs:00000000 updateLEDs
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:552    .text.updateLEDs:000000e4 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:563    .text.Hz2ms:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:569    .text.Hz2ms:00000000 Hz2ms
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:601    .text.Hz2ms:00000018 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:606    .text.LEDsOff:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:612    .text.LEDsOff:00000000 LEDsOff
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:649    .text.LEDsOff:0000001c $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:659    .text.function1:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:665    .text.function1:00000000 function1
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:790    .text.function1:00000084 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1075   .bss.t_step.5:00000000 t_step.5
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1069   .bss.t_prev_step.4:00000000 t_prev_step.4
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1063   .bss.step.3:00000000 step.3
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:806    .text.function2:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:812    .text.function2:00000000 function2
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:956    .text.function2:00000088 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1057   .bss.t_step.2:00000000 t_step.2
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1051   .bss.t_prev.1:00000000 t_prev.1
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1045   .bss.LEDstates.0:00000000 LEDstates.0
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:972    .text.main:00000000 $t
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:978    .text.main:00000000 main
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1037   .text.main:00000038 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1042   .bss.LEDstates.0:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1048   .bss.t_prev.1:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1054   .bss.t_step.2:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1060   .bss.step.3:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1066   .bss.t_prev_step.4:00000000 $d
+C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s:1072   .bss.t_step.5:00000000 $d
+
+UNDEFINED SYMBOLS
+p_countB3
+countB3
+millis
+TSB3
+debounce_thresh
+counterB3
+mode
+p_countB5
+countB5
+TSB5
+counterB5
+currentFreqMode1
+p_countB7
+countB7
+TSB7
+counterB7
+selLED
+p_countB9
+countB9
+TSB9
+ARM GAS  C:\Users\pablo\AppData\Local\Temp\ccGmFaBi.s 			page 25
+
+
+counterB9
+currentFreqsMode2
+G0
+R1
+B2
+B5
+R6
+G7
+__aeabi_fdiv
+__aeabi_fmul
+__aeabi_f2uiz
+Mode1Freqs
+Mode2Freqs
+GPIO_init
+RCC_init
+ITR_init
+SysTick_init
